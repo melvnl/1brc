@@ -9,6 +9,9 @@ city_names = [
 ]
 
 def generate_temperature():
+    # if we use .1f instead it will make the process faster even faster (13 minutes 22 seconds)
+    # probably since round() is a math operations
+    # return format(random.uniform(0, 99), '.1f')
     return round(random.uniform(0, 99), 1)
 
 def generate_data_row():
