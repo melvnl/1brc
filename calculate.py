@@ -1,6 +1,4 @@
 import csv
-import sys
-import time
 from utils import time_decorator
 
 class StationData:
@@ -17,8 +15,7 @@ def run():
 
     with open("measurements.csv", newline='') as csvfile:
         reader = csv.reader(csvfile)
-        progress = 0
-        for idx, row in enumerate(reader):
+        for row in reader:
             name = row[0]
             temperature = float(row[1])
 
@@ -32,14 +29,6 @@ def run():
                     station.max = temperature
                 station.sum += temperature
                 station.count += 1
-
-            if (idx + 1) * 100 // 1000000000 != progress:
-                progress = (idx + 1) * 100 // 1000000000
-                bars = '=' * (progress // 2)
-                sys.stdout.write(f"\r[{bars:<50}] {progress}%")
-                sys.stdout.flush()
-    sys.stdout.write('\n')
-
     print_result(data)
 
 def print_result(data):
